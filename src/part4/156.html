@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>local file load at browser</title>
+    <style>
+        .dot-box {
+            padding: 50px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="file-box" class="dot-box">
+    After Select Image File, Drag and Drop Here.
+</div>
+<output id="result"></output>
+<script>
+    let dropZone = document.getElementById('file-box');
+    dropZone.addEventListener('dragover', e => {
+      e.stopPropagation();
+      e.preventDefault();
+    });
+    dropZone.addEventListener('drop', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      console.log(files);
+
+      Array.from(files).filter(file => file.type.match('image.*'))
+        .forEach(file => {
+          const reader = new FileReader();
+
+          reader.onload = (e) => {
+            const imgEl = document.createElement('img');
+            console.log(e.target);
+            imgEl.src = e.target.result;
+            imgEl.title = file.name;
+            document.getElementById('result').append(imgEl);
+          };
+          reader.readAsDataURL(file);
+        });
+    });
+</script>
+</body>
+</html>

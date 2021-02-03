@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Delegation</title>
+</head>
+<body>
+<h2>Have to do</h2>
+<ul id="todo-list">
+    <li>
+        study <button class="remove-button">x</button>
+    </li>
+    <li>
+        shopping <button class="remove-button">x</button>
+    </li>
+    <li>
+        homework <button class="remove-button">x</button>
+    </li>
+</ul>
+<script>
+    document
+        .querySelector('ul#todo-list')
+        .addEventListener('click', function(event) {
+          if(event.target.className.indexOf('remove-button') < 0) {
+            return ;
+          }
+          const li = event.target.closest('li');
+          console.log(`${li.innerText} delete`);
+          li.remove();
+        });
+</script>
+</body>
+</html>

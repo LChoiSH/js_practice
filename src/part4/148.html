@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Spread Control</title>
+    <style>
+        #prevent {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<p>
+    normal context
+    <span id="prevent">Event prevented context</span><br>
+    normal context 2
+</p>
+<script>
+    const normalPEl = document.querySelector('p');
+    const eventPreventedEl = document.querySelector('#prevent');
+    normalPEl.addEventListener('contextmenu', function() {
+      console.log('contextmenu call');
+    });
+
+    eventPreventedEl.addEventListener('contextmenu', function(event) {
+      console.log('Click event prevented context');
+      event.stopPropagation();
+      event.preventDefault();
+    })
+</script>
+</body>
+</html>

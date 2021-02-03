@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product DOM and delete</title>
+    <script>
+      const inputContainer = document.getElementById('input-container');
+      console.log(inputContainer);
+      document.addEventListener('DOMContentLoaded', e => {
+        const inputContainer = document.getElementById('input-container');
+        console.log(inputContainer);
+
+        const inputEl = inputContainer.querySelector('input');
+        inputEl.addEventListener('keydown', e => {
+          console.log(`keyCode: ${e.keyCode}`);
+        });
+
+        const buttonEl = inputContainer.querySelector('button');
+        buttonEl.addEventListener('click', e => {
+          console.log(e.target);
+          console.log(`input value: ${inputEl.value}`);
+        });
+      });
+    </script>
+</head>
+<body>
+<div id="input-container">
+    <input type="text">
+    <button>button</button>
+</div>
+<h2>상품 목록</h2>
+<ul id="product-list">
+</ul>
+<script>
+    const products = [
+      {id:'p-01',name:'product1'},
+      {id:'p-02',name:'product2'},
+      {id:'p-03',name:'product3'},
+    ]
+
+    const productListEl = document.querySelector('#product-list');
+    products.map(product => {
+      const newEl = document.createElement('li');
+      newEl.id = product.id;
+      newEl.innerHTML = product.name;
+      return newEl;
+    }).forEach(productEl => {
+      productListEl.appendChild(productEl);
+    });
+
+    setTimeout(() => {
+      const secondEl = document.querySelector('ul li:nth-child(2)');
+      secondEl.remove();
+    }, 1000);
+
+    productListEl.after("<div>잘못된사용</div>");
+    productListEl.insertAdjacentHTML('afterend', "<p>추가된 문장</p>");
+
+</script>
+</body>
+</html>

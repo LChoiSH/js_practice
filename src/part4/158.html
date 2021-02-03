@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe message transfer</title>
+</head>
+<body>
+<div>
+    <label for="">price: </label><b>20,000 ₩</b>
+    <br>
+    <button id="checkout-btn">Input Card</button>
+</div>
+<iframe src="" frameborder="0" id="card-payment" width="500px" height="200px"></iframe>
+<script>
+    const iWindow = document.getElementById('card-payment').contentWindow;
+
+    document.getElementById('checkout-btn')
+      .addEventListener('click', e => {
+        iWindow.location = '158-1.html';
+      });
+
+    window.addEventListener('message', e => {
+      if (e.data.holderName) console.log(e.data);
+    });
+</script>
+</body>
+</html>

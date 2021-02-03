@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Navigation</title>
+</head>
+<body>
+<h1>국내여행지</h1>
+<ul>
+    <li>Seoul</li>
+    <li>Jeju</li>
+    <li>SokCho</li>
+    <li>Busan</li>
+</ul>
+<script>
+    const bodyEl = document.body;
+    const bodyElChildren = bodyEl.children;
+    console.log(bodyElChildren);
+
+    const cityList = bodyElChildren[1];
+
+    console.log(cityList.children.length);
+    const item2 = cityList.children.item(1);
+    console.log(item2);
+    console.log(item2.previousElementSibling);
+    console.log(item2.previousSibling);
+    console.log(item2.previousSibling.previousSibling);
+    console.log(cityList.childNodes);
+    console.log(item2.firstChild);
+    console.log(item2.lastChild);
+    console.log(item2.parentElement);
+
+</script>
+</body>
+</html>

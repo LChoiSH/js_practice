@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<form name="order">
+    <fieldset name="userInfo">
+        <legend>Order person</legend>
+        name: <input name="name" type="text">
+        phone: <input name="tel" type="tel">
+    </fieldset>
+    <fieldset name="productInfo">
+        <legend>product information</legend>
+        product: <input type="text" name="productName">
+        color:
+        <select name="color">
+            <option value="black">black</option>
+            <option value="yellow">yellow</option>
+        </select>
+    </fieldset>
+    <button id="btn1" type="button">button</button>
+    <button type="submit">submit</button>
+</form>
+<script>
+    const orderForm = document.forms.order,
+      userField = orderForm.elements.userInfo,
+      productFiled = orderForm.elements.productInfo;
+    document.getElementById('btn1')
+      .addEventListener('click', e => {
+        const {name, tel} = userField.elements;
+        console.log(`${name.value} user ordered (${tel.value})`);
+      });
+    orderForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const {productName, color} = productFiled.elements;
+      console.log(`${productName.value} product ${color.value} color`);
+      orderForm.method = 'GET';
+      orderForm.submit();
+    });
+</script>
+</body>
+</html>
